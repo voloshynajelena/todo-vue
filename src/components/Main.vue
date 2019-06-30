@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <Header title="This is Header"/>
-    <Content title="This is Content"/>
-    <Footer title="This is Footer"/>
+    <Header @keyup-enter="addTodo"/>
+    <Content/>
+    <Footer/>
   </div>
 </template>
 
@@ -17,10 +17,21 @@ export default {
   props: {
     msg: String
   },
+  data () {
+    return {
+      todoList: []
+    }
+  },
   components: {
     Header,
     Content,
     Footer
+  },
+  methods: {
+    addTodo(item){
+      this.todoList.push(item)
+      console.log(this.todoList)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section class="content">
     <ul>
-      <li v-for='(item,index) in todoList' :key="index">
+      <li v-for='(item,index) in todoList' :key="index" v-show='item.visibility'>
         <div>
           <input class="toggle" 
                   type="checkbox" 

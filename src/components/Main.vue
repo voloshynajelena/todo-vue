@@ -1,52 +1,84 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <Header @keyup-enter='addTodo'/>
-    <Content @remove-item='removeTodo' 
-              @toggle-status='updateStatus'
-              @edit-item='editTodo'
-              @edited-item='editTodo'
-            :todoList='todoList'/>
-    <Footer/>
+    <Header @keyup-enter="addTodo" />
+    <Content
+      @remove-item="removeTodo"
+      @toggle-status="updateStatus"
+      @edit-item="editTodo"
+      @edited-item="editTodo"
+      :todoList="todoList"
+    />
+    <Footer 
+      @change-filter="updateFilter" 
+      @delete-completed="deleteCompleted" 
+      :todoListLength="todoList.length" />
   </div>
 </template>
 
 <script>
-import Header from './Header.vue'
-import Content from './Content.vue'
-import Footer from './Footer.vue'
+/* eslint-disable */
+import Header from "./Header.vue"
+import Content from "./Content.vue"
+import Footer from "./Footer.vue"
 
 export default {
-  name: 'Main',
+  name: "Main",
   props: {
     msg: String
   },
-  data () {
+  data() {
     return {
       todoList: []
-    }
+    };
   },
   components: {
     Header,
     Content,
     Footer
   },
+  computed: {},
   methods: {
-    addTodo(text){
-      let item = {checked: false, text, isEdit: false}
-      this.todoList.push(item)
+    addTodo(text) {
+      let item = { checked: false, text, isEdit: false, visibility: true };
+      this.todoList.push(item);
     },
-    removeTodo(index){
-      this.todoList.splice(index,1)
+    removeTodo(index) {
+      this.todoList.splice(index, 1);
     },
-    updateStatus(){
-      console.log('updateStatus() todoList----->',this.todoList)
+    updateStatus() {
+      console.log("updateStatus() todoList----->", this.todoList)
     },
-    editTodo(index){
+    editTodo(index) {
       this.todoList[index].isEdit = !this.todoList[index].isEdit
+    },
+    updateFilter(filterName) {
+      switch (filterName) {
+        case "All":
+          this.todoList.map(item=>{
+            item.visibility = true
+          })
+          break
+        case "To do":
+          this.todoList.map(item=>{
+            item.visibility = !item.checked
+          })
+          break
+        case "Done":
+          this.todoList.map(item=>{
+            item.visibility = item.checked
+          })
+          break
+      }
+    },
+    deleteCompleted(){
+      console.log('---->')
+      this.todoList = this.todoList.filter((item,index)=>
+        !item.checked
+      )
     }
   }
-}
+};
 </script>
 
 <style scoped>

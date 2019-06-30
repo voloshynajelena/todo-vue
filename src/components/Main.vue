@@ -51,7 +51,6 @@ export default {
       this.todoList.splice(index, 1);
     },
     updateStatus() {
-      console.log("updateStatus() todoList----->", this.todoList)
     },
     editTodo(index) {
       this.todoList[index].isEdit = !this.todoList[index].isEdit
@@ -76,7 +75,6 @@ export default {
       }
     },
     deleteCompleted(){
-      console.log('---->')
       this.todoList = this.todoList.filter((item,index)=>
         !item.checked
       )

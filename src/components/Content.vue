@@ -1,5 +1,10 @@
 <template>
   <section class="content">
+    <ul>
+      <li v-for='(item,index) in todoList' :key="index">
+        {{item}}
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -10,6 +15,12 @@ export default {
       return {
 
       }
+    },
+    props: {
+      todoList: Array
+    },
+    updated(){
+      console.log(this.todoList)
     }
 }
 </script>

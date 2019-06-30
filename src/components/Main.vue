@@ -2,7 +2,7 @@
   <div class="main">
     <h1>{{ msg }}</h1>
     <Header @keyup-enter="addTodo"/>
-    <Content/>
+    <Content :todoList='todoList'/>
     <Footer/>
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
   methods: {
     addTodo(item){
       this.todoList.push(item)
-      console.log(this.todoList)
     }
   }
 }

@@ -21,6 +21,15 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  header {
+    padding-left: 40px;
+    
+    input {
+      width: 90%;
+      height: 40px;
+      padding-left: 20px;
+      font-size: 20px;
+    }
+  }
 </style>

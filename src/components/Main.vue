@@ -12,7 +12,7 @@
     <Footer 
       @change-filter="updateFilter" 
       @delete-completed="deleteCompleted" 
-      :todoListLength="todoList.length" />
+      :todoListLength="activeItemsLength" />
   </div>
 </template>
 
@@ -37,7 +37,11 @@ export default {
     Content,
     Footer
   },
-  computed: {},
+  computed: {
+    activeItemsLength(){
+      return this.todoList.filter(item=>!item.checked).length
+    }
+  },
   methods: {
     addTodo(text) {
       let item = { checked: false, text, isEdit: false, visibility: true };

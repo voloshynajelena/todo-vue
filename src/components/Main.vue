@@ -1,8 +1,12 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <Header @keyup-enter="addTodo"/>
-    <Content :todoList='todoList'/>
+    <Header @keyup-enter='addTodo'/>
+    <Content @remove-item='removeTodo' 
+              @toggle-status='updateStatus'
+              @edit-item='editTodo'
+              @edited-item='editTodo'
+            :todoList='todoList'/>
     <Footer/>
   </div>
 </template>
@@ -28,8 +32,18 @@ export default {
     Footer
   },
   methods: {
-    addTodo(item){
+    addTodo(text){
+      let item = {checked: false, text, isEdit: false}
       this.todoList.push(item)
+    },
+    removeTodo(index){
+      this.todoList.splice(index,1)
+    },
+    updateStatus(){
+      console.log('updateStatus() todoList----->',this.todoList)
+    },
+    editTodo(index){
+      this.todoList[index].isEdit = !this.todoList[index].isEdit
     }
   }
 }

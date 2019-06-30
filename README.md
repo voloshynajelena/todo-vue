@@ -25,6 +25,20 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# todo-vue
+
+# todo-vue features
+
+### Add tasks
+type + enter
+
+### Delete tasks
+the cross is to the left
+
+### Change
+double click on the text
+
+### Filter
+all, done, to do
+
+### Delete all completed
+click on "delete completed"
